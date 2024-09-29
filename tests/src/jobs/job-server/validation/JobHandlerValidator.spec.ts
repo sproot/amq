@@ -204,42 +204,5 @@ describe('JobHandlerValidator', () => {
         ).not.toThrow();
       }
     });
-
-    it('should throw error for synchronous job handler methods', () => {
-      class InvalidHandler {
-        handle() {}
-      }
-
-      const invalidHandlerMethods = [
-        new InvalidHandler(),
-        { handle: () => {} },
-        { handle() {} },
-      ];
-
-      for (const handler of invalidHandlerMethods) {
-        expect(() =>
-          jobHandlerValidator.validate(handler, context),
-        ).toThrowError(
-          'Job handler is invalid: #handle method must be async (fake-context)',
-        );
-      }
-    });
-
-    it('should throw error for synchronous job handler functions', () => {
-      const invalidHandlerMethods = [
-        () => true,
-        function test({ data: { test } }: { data: any }) {
-          console.log('hello world:', test);
-        },
-      ];
-
-      for (const handler of invalidHandlerMethods) {
-        expect(() =>
-          jobHandlerValidator.validate(handler, context),
-        ).toThrowError(
-          'Job handler is invalid: must be an async function (fake-context)',
-        );
-      }
-    });
   });
 });

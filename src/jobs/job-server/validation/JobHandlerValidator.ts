@@ -1,4 +1,3 @@
-import { isAsyncFunction } from '../../../utils/isAsyncFunction';
 import { PositiveNumberValidator } from './PositiveNumberValidator';
 import { RetryDelayCalculatorValidator } from './RetryDelayCalculatorValidator';
 
@@ -35,12 +34,6 @@ export class JobHandlerValidator {
         );
       }
 
-      if (!isAsyncFunction(value.handle)) {
-        throw new Error(
-          `Job handler is invalid: #handle method must be async (${context})`,
-        );
-      }
-
       if (
         value.handleError !== undefined &&
         typeof value.handleError !== 'function'
@@ -73,10 +66,6 @@ export class JobHandlerValidator {
     } else if (typeof value !== 'function') {
       throw new Error(
         `Job handler is invalid: must be an object or a function (${context})`,
-      );
-    } else if (!isAsyncFunction(value)) {
-      throw new Error(
-        `Job handler is invalid: must be an async function (${context})`,
       );
     }
   }

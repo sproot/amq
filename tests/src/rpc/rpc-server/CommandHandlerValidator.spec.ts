@@ -79,42 +79,5 @@ describe('CommandHandlerValidator', () => {
         ).not.toThrow();
       }
     });
-
-    it('should throw error for synchronous command handler methods', () => {
-      class InvalidHandler {
-        handle() {}
-      }
-
-      const invalidHandlerMethods = [
-        new InvalidHandler(),
-        { handle: () => {} },
-        { handle() {} },
-      ];
-
-      for (const handler of invalidHandlerMethods) {
-        expect(() =>
-          commandHandlerValidator.validate(handler, context),
-        ).toThrowError(
-          'Command handler is invalid: #handle method must be async (fake-context)',
-        );
-      }
-    });
-
-    it('should throw error for synchronous command handler functions', () => {
-      const invalidHandlerMethods = [
-        () => true,
-        function test(data: any) {
-          console.log('hello world:', data);
-        },
-      ];
-
-      for (const handler of invalidHandlerMethods) {
-        expect(() =>
-          commandHandlerValidator.validate(handler, context),
-        ).toThrowError(
-          'Command handler is invalid: must be an async function (fake-context)',
-        );
-      }
-    });
   });
 });

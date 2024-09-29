@@ -1,6 +1,6 @@
 {
   "name": "@sproot/amq",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "RabbitMQ library for Node.js",
   "author": "Alex Kuznetsov",
   "license": "UN",
