@@ -1,6 +1,6 @@
 import { AmqpConnection } from './AmqpConnection';
 import { JsonBufferSerializer } from '../src/core';
-import { PubSub as PubSubBase } from './pub-sub/PubSub';
+import { PubSub as PubSubBase } from '../src/pub-sub/PubSub';
 
 /**
  * The default queue name pattern is "{topic}:{consumerNumber}".
