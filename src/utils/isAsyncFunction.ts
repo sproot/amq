@@ -1,3 +1,6 @@
-export function isAsyncFunction(func: (...args: any[]) => any) {
-  return func.constructor.name === 'AsyncFunction' || func instanceof Promise;
+export function isAsyncFunction(func: any): boolean {
+  return func && (
+    func.constructor.name === 'AsyncFunction' ||
+    typeof func.then === 'function'
+  );
 }
