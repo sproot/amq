@@ -1,5 +1,5 @@
 import { AmqpConnection } from './AmqpConnection';
-import { JsonBufferSerializer } from './core/JsonBufferSerializer';
+import { JsonBufferSerializer } from '../src/core';
 import { PubSub as PubSubBase } from './pub-sub/PubSub';
 
 /**
