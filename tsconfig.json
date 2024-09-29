@@ -1,0 +1,25 @@
+﻿{
+  "compilerOptions": {
+    "lib": ["es5", "es6"],
+    "target": "ES2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDirs": ["./main", "./src"],
+    "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "strict": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests",
+    "./**/*.spec.ts",
+    "./**/*.mock.ts",
+    "jest.config.ts"
+  ]
+}

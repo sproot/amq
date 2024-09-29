@@ -1,0 +1,38 @@
+services:
+  demo-app:
+    container_name: amq-demo-app
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOSTNAME: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: amq-user
+      RABBITMQ_PASSWORD: amq-password
+      RABBITMQ_PREFETCH_COUNT: 50
+      RABBITMQ_JOBS_EXCHANGE: jobs
+      RABBITMQ_JOBS_QUEUE: jobs:demo-app
+    volumes:
+      - ./demo/:/demo
+    networks:
+      - amq
+    command: |
+      wait-for rabbitmq:5672 -t 260 --
+      node demo/app.js
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: amq-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: amq-user
+      RABBITMQ_DEFAULT_PASS: amq-password
+    networks:
+      - amq
+    ports:
+      - 15672:15672
+
+networks:
+  amq:
+    driver: bridge

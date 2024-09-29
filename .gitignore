@@ -1,0 +1,16 @@
+# Editors and system files
+.idea
+.vscode
+.DS_Store
+
+# Test coverage
+coverage
+
+# stryker temp files
+.stryker-tmp
+reports
+
+# Others
+node_modules
+dist
+package-lock.json
